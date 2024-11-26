@@ -43,6 +43,8 @@ export default class LifeCyclePage extends React.Component {
     console.log("componentWillMount", this.state.count);
   }
   componentDidMount() {
+    // effect
+    // network request
     console.log("componentDidMount", this.state.count);
   }
   componentWillUnmount() {
@@ -69,6 +71,9 @@ export default class LifeCyclePage extends React.Component {
     });
   };
 
+  handle = () => {
+    // ajax
+  };
   render() {
     const { count } = this.state;
     console.log("render", this.state);
@@ -79,6 +84,8 @@ export default class LifeCyclePage extends React.Component {
         <button onClick={this.setCount}>改变count</button>
         {/* {!!(count % 2) && <Foo />} */}
         <Child count={count} />
+
+        <XYZ data={data} />
       </div>
     );
   }

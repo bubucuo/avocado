@@ -44,7 +44,9 @@ function FunctionComponent(props) {
   const [count1, setCount1] = useReducer((x) => x + 1, 0);
 
   // passive effect 异步执行
+  // 组件挂载之后异步执行
   useEffect(() => {
+    // network request
     // setCount1();
     // return () => {
     //   console.log("销毁");
@@ -54,6 +56,7 @@ function FunctionComponent(props) {
   return (
     <div className="border">
       <p>{props.name}</p>
+      <p>num:{props.num}</p>
       <button
         onClick={() => {
           setCount1();
@@ -65,6 +68,9 @@ function FunctionComponent(props) {
   );
 }
 
+// mount
+// update
+
 // 函数组件
 const A = () => [1, 2, 3];
 const B = () => (
@@ -74,6 +80,12 @@ const B = () => (
   </>
 );
 
+let num = 10;
+
+const C = () => {
+  return num % 2 === 0 ? <h1>偶数</h1> : null;
+};
+
 const jsx = (
   <div className="box border">
     {/* 原生标签 */}
@@ -81,11 +93,12 @@ const jsx = (
     {/* 文本节点 */}
     text
     {/* 函数组件 */}
-    <FunctionComponent name="函数组件" />
+    <FunctionComponent name="函数组件" num="1" />
     <A />
     <ul>
       <B />
     </ul>
+    <C />
     {/* 类组件 */}
     <ClassComponent name="类组件" />
     {/* Fragment */}
@@ -94,10 +107,11 @@ const jsx = (
       <h1>2</h1>
     </>
     {/* 数组 */}
+    {/* index不具备稳定性 */}
     {data.map((item, index) => (
-      <h4 key={item.key}>
+      <h5 key={item.key}>
         {index}: {item.name}
-      </h4>
+      </h5>
     ))}
     {/* 条件渲染 */}
     {data.length > 0 && <h1>数组有{data.length}项</h1>}

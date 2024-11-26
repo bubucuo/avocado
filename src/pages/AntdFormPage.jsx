@@ -14,6 +14,7 @@ export default class AntdFormPage extends Component {
   }
   onFinish = (val) => {
     console.log("onFinish", val); //sy-log
+    // ajax
   };
   onFinishFailed = (val) => {
     console.log("onFinishFailed", val); //sy-log
@@ -31,7 +32,7 @@ export default class AntdFormPage extends Component {
             <Input placeholder="username placeholder" />
           </FormItem>
           <FormItem name="password" label="密码" rules={[passworRules]}>
-            <Input placeholder="password placeholder" />
+            <Input type="password" placeholder="password placeholder" />
           </FormItem>
           <FormItem>
             <Button type="primary" size="large" htmlType="submit">
