@@ -1,9 +1,4 @@
-import jsx from "./pages/ExamplePage";
-import UseRefPage from "./pages/UseRefPage";
-import AntdFormPage from "./pages/AntdFormPage";
-import MyRCFieldForm from "./pages/MyRCFieldForm";
-import ContextPage from "./pages/ContextPage";
-import StatePage from "./pages/StatePage";
+import ReactReduxPage from "./pages/ReactReduxPage";
 
 // redux的核心源码
 // function createState() {
@@ -18,14 +13,9 @@ import StatePage from "./pages/StatePage";
 export default function App() {
   return (
     <>
-      {/* {jsx} */}
-      {/* <StatePage /> */}
-      {/* <UseRefPage /> */}
-      {/* <UseRefPage /> */}
-
-      {/* <ContextPage /> */}
-      <AntdFormPage />
-      <MyRCFieldForm />
+      {/* <ReduxPage /> */}
+      {/* ReactRedux */}
+      <ReactReduxPage />
     </>
   );
 }
