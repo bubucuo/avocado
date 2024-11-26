@@ -1,12 +1,18 @@
+import jsx from "./pages/ExamplePage";
+import UseRefPage from "./pages/UseRefPage";
 // import AntdFormPage from "./pages/AntdFormPage";
+// import MyRCFieldForm from "./pages/MyRCFieldForm";
+import ContextPage from "./pages/ContextPage";
 
-import MyRCFieldForm from "./pages/MyRCFieldForm";
-
-export default function App(props) {
+export default function App() {
   return (
-    <div>
+    <>
+      {/* {jsx} */}
+      {/* <UseRefPage /> */}
+
+      <ContextPage />
       {/* <AntdFormPage /> */}
-      <MyRCFieldForm />
-    </div>
+      {/* <MyRCFieldForm /> */}
+    </>
   );
 }
