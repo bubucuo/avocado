@@ -1,3 +1,4 @@
+import RTKPage from "./pages/RTKPage";
 import ReactReduxPage from "./pages/ReactReduxPage";
 
 // redux的核心源码
@@ -15,7 +16,8 @@ export default function App() {
     <>
       {/* <ReduxPage /> */}
       {/* ReactRedux */}
-      <ReactReduxPage />
+      {/* <ReactReduxPage /> */}
+      <RTKPage />
     </>
   );
 }
