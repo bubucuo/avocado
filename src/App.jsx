@@ -1,5 +1,6 @@
-import RTKPage from "./pages/RTKPage";
+// import RTKPage from "./pages/RTKPage";
 import ReactReduxPage from "./pages/ReactReduxPage";
+import ReduxPage from "./pages/ReduxPage";
 
 // redux的核心源码
 // function createState() {
@@ -16,8 +17,8 @@ export default function App() {
     <>
       {/* <ReduxPage /> */}
       {/* ReactRedux */}
-      {/* <ReactReduxPage /> */}
-      <RTKPage />
+      <ReactReduxPage />
+      {/* <RTKPage /> */}
     </>
   );
 }
