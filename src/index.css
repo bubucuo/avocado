@@ -33,3 +33,12 @@ code {
 .pink {
   color: pink;
 }
+
+a {
+  display: inline-block;
+  margin: 10px;
+}
+
+.active {
+  color: red;
+}

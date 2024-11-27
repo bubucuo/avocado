@@ -1,67 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { useContext } from "react";
 import FieldContext from "./FieldContext";
-// export default class Field extends Component {
-//   static contextType = FieldContext;
 
-//   componentDidMount() {
-//     this.unregister = this.context.registerFieldEntities(this);
-//   }
-
-//   componentWillUnmount() {
-//     this.unregister();
-//   }
-
-//   onStoreChange = () => {
-//     this.forceUpdate();
-//   };
-
-//   getControlled = () => {
-//     const { getFieldValue, setFieldsValue } = this.context;
-//     const { name } = this.props;
-//     return {
-//       value: getFieldValue(name), //"omg", // get state
-//       onChange: (e) => {
-//         const newValue = e.target.value;
-//         // set state
-//         setFieldsValue({ [name]: newValue });
-//       },
-//     };
-//   };
-//   render() {
-//     const { children } = this.props;
-
-//     const returnChildNode = React.cloneElement(children, this.getControlled());
-//     return returnChildNode;
-//   }
-// }
-
-export default function Field(props) {
-  const { children, name } = props;
-
-  const { getFieldValue, setFieldsValue, registerFieldEntities } =
-    React.useContext(FieldContext);
+export default function Field({ children, name }) {
+  const form = useContext(FieldContext);
 
   const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
 
+  //
   React.useLayoutEffect(() => {
-    const unregister = registerFieldEntities({
-      props,
+    const unregisterField = form.registerField({
+      name,
       onStoreChange: forceUpdate,
     });
-    return unregister;
+    // cleanup | destory
+    // 组件卸载之前 、 依赖变化之前
+    return unregisterField;
   }, []);
 
-  const getControlled = () => {
-    return {
-      value: getFieldValue(name), //"omg", // get state
-      onChange: (e) => {
-        const newValue = e.target.value;
-        // set state
-        setFieldsValue({ [name]: newValue });
-      },
-    };
-  };
+  const returnChildNode = React.cloneElement(children, {
+    value: form.getFieldValue(name) || "",
+    onChange: (e) => {
+      const newValue = e.target.value;
+      form.setFieldsValue({ [name]: newValue });
+    },
+  });
 
-  const returnChildNode = React.cloneElement(children, getControlled());
   return returnChildNode;
 }

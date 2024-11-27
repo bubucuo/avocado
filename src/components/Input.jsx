@@ -1,6 +1,7 @@
 import React from "react";
 
 const Input = (props) => {
+  // state
   return <input {...props} />;
 };
 

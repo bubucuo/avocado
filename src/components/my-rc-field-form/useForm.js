@@ -1,116 +1,65 @@
-// 定义状态管理库
-
 import { useRef } from "react";
 
+// sy- 实现一个第三方state store
+// state
+// 1、变量
+// todo 2、 组件随变量更新
 class FormStore {
   constructor() {
-    this.store = {}; // 状态值： name: value
-    this.fieldEntities = [];
-
-    this.callbacks = {};
+    this.store = {}; // 存储state, key-value
+    this.fieldEntities = []; // 存储Field实例
   }
 
-  setCallbacks = (callbacks) => {
-    this.callbacks = { ...this.callbacks, ...callbacks };
-  };
-
-  // 注册实例(forceUpdate)
-  // 注册与取消注册
-  // 订阅与取消订阅
-  registerFieldEntities = (entity) => {
+  // 注册与销毁
+  registerField = (entity) => {
     this.fieldEntities.push(entity);
 
     return () => {
       this.fieldEntities = this.fieldEntities.filter((item) => item !== entity);
-      delete this.store[entity.props.name];
+      delete this.store[entity.name];
     };
   };
 
   // get
-  getFieldsValue = () => {
-    return { ...this.store };
-  };
-
   getFieldValue = (name) => {
     return this.store[name];
   };
 
   // set
-  // password: 123
+  // {[name]: 'zhangsan}
   setFieldsValue = (newStore) => {
-    // 1. update store
+    // update state
     this.store = {
       ...this.store,
       ...newStore,
     };
-    // 2. update Field
+
+    // update component Field
     this.fieldEntities.forEach((entity) => {
-      Object.keys(newStore).forEach((k) => {
-        if (k === entity.props.name) {
+      Object.keys(newStore).forEach((key) => {
+        if (key === entity.name) {
           entity.onStoreChange();
         }
       });
     });
   };
 
-  validate = () => {
-    let err = [];
-    // todo 校验
-    // 简版校验
-
-    this.fieldEntities.forEach((entity) => {
-      const { name, rules } = entity.props;
-
-      const value = this.getFieldValue(name);
-      let rule = rules[0];
-
-      if (rule && rule.required && (value === undefined || value === "")) {
-        err.push({ [name]: rule.message, value });
-      }
-    });
-
-    return err;
-  };
-
-  submit = () => {
-    console.log("submit"); //sy-log
-
-    let err = this.validate();
-    // 提交
-    const { onFinish, onFinishFailed } = this.callbacks;
-
-    if (err.length === 0) {
-      // 校验通过
-      onFinish(this.getFieldsValue());
-    } else {
-      // 校验不通过
-      onFinishFailed(err, this.getFieldsValue());
-    }
-  };
-
   getForm = () => {
     return {
-      getFieldsValue: this.getFieldsValue,
       getFieldValue: this.getFieldValue,
       setFieldsValue: this.setFieldsValue,
-      registerFieldEntities: this.registerFieldEntities,
-      submit: this.submit,
-      setCallbacks: this.setCallbacks,
+      registerField: this.registerField,
     };
   };
 }
 
-export default function useForm(form) {
-  // 存值，在组件卸载之前指向的都是同一个值
+// 实例化
+export default function useForm() {
   const formRef = useRef();
-
   if (!formRef.current) {
-    if (form) {
-      formRef.current = form;
-    } else {
-      const formStore = new FormStore();
-      formRef.current = formStore.getForm();
-    }
+    const instance = new FormStore();
+    formRef.current = instance.getForm();
   }
+
   return [formRef.current];
 }

@@ -1,5 +1,14 @@
 import { useRef, useState } from "react";
 
+// fiberNode
+
+// 节点信息
+// const nodes={
+//   UseRefPage:{
+//     hooks:{ms:0}
+//   }
+// }
+
 export default function UseRefPage() {
   let ref = useRef(0);
 
