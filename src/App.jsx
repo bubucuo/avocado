@@ -10,6 +10,7 @@ import UseMemoPage from "./pages/UseMemoPage";
 import SuspensePage from "./pages/SuspensePage";
 import TransitionPage from "./pages/TransitionPage";
 import UseDeferredValuePage from "./pages/UseDeferredValuePage";
+import LoadingPage from "./pages/LoadingPage";
 
 // redux的核心源码
 // function createState() {
@@ -37,6 +38,7 @@ export default function App() {
           <NavLink to="/suspense">suspense</NavLink>
           <NavLink to="/transition">transition</NavLink>
           <NavLink to="/useDeferredValue">useDeferredValue</NavLink>
+          <NavLink to="loading">loading</NavLink>
         </nav>
         <Routes>
           <Route path="/" element={jsx} />
@@ -50,6 +52,7 @@ export default function App() {
           <Route path="/suspense" element={<SuspensePage />} />
           <Route path="/transition" element={<TransitionPage />} />
           <Route path="/useDeferredValue" element={<UseDeferredValuePage />} />
+          <Route path="loading" element={<LoadingPage />} />
         </Routes>
       </BrowserRouter>
     </>
