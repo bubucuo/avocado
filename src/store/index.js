@@ -1,28 +1,28 @@
-import { createStore } from "redux";
+// import { createStore } from "redux";
 
-function countReducer(state = 100, action) {
-  switch (action.type) {
-    case "ADD":
-      return state + 1;
-    case "MINUS":
-      return state - 1;
-    default:
-      return state;
-  }
-}
+// function countReducer(state = 100, action) {
+//   switch (action.type) {
+//     case "ADD":
+//       return state + 1;
+//     case "MINUS":
+//       return state - 1;
+//     default:
+//       return state;
+//   }
+// }
 
-const store = createStore(countReducer);
+// const store = createStore(countReducer);
 
-export default store;
+// export default store;
 
-// import { configureStore } from "@reduxjs/toolkit";
-// import counterReducer from "./counterSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
 
-// export default configureStore({
-//   reducer: {
-//     counter: counterReducer,
-//   },
-// });
+export default configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
 
 // // redux
 // function createStore(reducer) {
