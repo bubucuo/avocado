@@ -1,5 +1,6 @@
 // import { createStore } from "redux";
 
+// 学习成本高
 // function countReducer(state = 100, action) {
 //   switch (action.type) {
 //     case "ADD":

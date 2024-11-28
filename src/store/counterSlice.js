@@ -5,6 +5,7 @@ export const counterSlice = createSlice({
   initialState: {
     value: 0,
   },
+  // 这里不用遵循传统的reducer写法，可以不按照纯函数规则了
   reducers: {
     increment: (state) => {
       // 由于使用了Immerjs, rtk允许我们在reducers里直接修改状态，但是实际上state并没有发生改变
