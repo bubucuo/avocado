@@ -11,6 +11,7 @@ import SuspensePage from "./pages/SuspensePage";
 import TransitionPage from "./pages/TransitionPage";
 import UseDeferredValuePage from "./pages/UseDeferredValuePage";
 import LoadingPage from "./pages/LoadingPage";
+import TableForm from "./pages/TableForm";
 
 // redux的核心源码
 // function createState() {
@@ -39,6 +40,7 @@ export default function App() {
           <NavLink to="/transition">transition</NavLink>
           <NavLink to="/useDeferredValue">useDeferredValue</NavLink>
           <NavLink to="loading">loading</NavLink>
+          <NavLink to="/table">table</NavLink>
         </nav>
         <Routes>
           <Route path="/" element={jsx} />
@@ -53,6 +55,7 @@ export default function App() {
           <Route path="/transition" element={<TransitionPage />} />
           <Route path="/useDeferredValue" element={<UseDeferredValuePage />} />
           <Route path="loading" element={<LoadingPage />} />
+          <Route path="/table" element={<TableForm />} />
         </Routes>
       </BrowserRouter>
     </>
